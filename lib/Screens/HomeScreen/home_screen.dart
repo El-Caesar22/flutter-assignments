@@ -6,7 +6,7 @@ import 'package:islami_app/util/app_color.dart';
 import 'package:islami_app/util/app_images.dart';
 import 'package:islami_app/util/app_theme.dart';
 
-import '../Tabs/Radio/radio_tab.dart';
+import '../../Tabs/Radio/radio_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routname = "HomeScreen";
