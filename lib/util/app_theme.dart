@@ -17,5 +17,15 @@ abstract class AppTheme{
       fontSize: 20,
       fontWeight: FontWeight.w400
   );
+  static const TextStyle SebhaCounter = TextStyle(
+      color: AppColors.lightBlack,
+      fontSize: 26,
+      fontWeight: FontWeight.bold
+  );
+  static const TextStyle intSebhaCounter = TextStyle(
+      color: AppColors.lightBlack,
+      fontSize: 18,
+      fontWeight: FontWeight.bold
+  );
 
 }

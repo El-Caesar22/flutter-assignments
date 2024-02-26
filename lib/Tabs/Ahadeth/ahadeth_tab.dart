@@ -1,13 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:islami_app/Screens/AhadethDetails/ahadethDetails.dart';
 import 'package:islami_app/model/ahadeth_details_args.dart';
-
-import '../../Suras/suras.dart';
-import '../../model/sura_details_args.dart';
 import '../../util/app_color.dart';
 import '../../util/app_images.dart';
 import '../../util/app_theme.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class AhadethTab extends StatelessWidget {
   const AhadethTab({super.key});
 
@@ -19,13 +17,13 @@ class AhadethTab extends StatelessWidget {
             flex: 3, child: Center(child: Image.asset(AppImages.HadethTabLogo))),
         Expanded(
           flex: 7,
-          child: buildScreenContent(),
+          child: buildScreenContent(context),
         ),
       ],
     );
   }
 
-  Widget buildScreenContent() {
+  Widget buildScreenContent(BuildContext context) {
     return Column(
       children: [
         Divider(
@@ -35,7 +33,7 @@ class AhadethTab extends StatelessWidget {
         Row(
           children: [
             Expanded(
-                child: Text("Hadeth Name",
+                child: Text(AppLocalizations.of(context)!.hadethName,
                     textAlign: TextAlign.center,
                     style: AppTheme.MediumTitleTextStyle)),
           ],

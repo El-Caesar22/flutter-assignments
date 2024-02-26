@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:islami_app/Tabs/Ahadeth/ahadeth_tab.dart';
 import 'package:islami_app/Tabs/Quran/quran_tab.dart';
 import 'package:islami_app/Tabs/Sebha/sebha_tab.dart';
+import 'package:islami_app/Tabs/Settings/settingsTab.dart';
 import 'package:islami_app/util/app_color.dart';
 import 'package:islami_app/util/app_images.dart';
 import 'package:islami_app/util/app_theme.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../Tabs/Radio/radio_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   AppBar buildAppBar() => AppBar(
         elevation: 0,
         backgroundColor: AppColors.Transparent,
-        title: Text("Islami ", style: AppTheme.AppBarTextStyle),
+        title: Text(AppLocalizations.of(context)!.islame, style: AppTheme.AppBarTextStyle),
         centerTitle: true,
       );
 
@@ -56,6 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage(AppImages.SebhaIcon), size: 35),
                 label: "Sebha"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings, size: 35),
+                label: "Setting")
           ],
           selectedItemColor: AppColors.lightBlack,
           currentIndex: currentTabIndex,
@@ -69,6 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Body = RadioTab();
             } else if (currentTabIndex == 3) {
               Body = SebhaTab();
+            }
+            else if(currentTabIndex == 4){
+              Body = SettingsTab();
             }
             setState(() {});
           },
