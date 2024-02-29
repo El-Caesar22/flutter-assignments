@@ -3,6 +3,8 @@ import 'package:islami_app/util/app_color.dart';
 import 'package:islami_app/util/app_images.dart';
 import 'package:islami_app/util/app_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_app/util/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class SebhaTab extends StatefulWidget {
   const SebhaTab({super.key});
@@ -16,8 +18,10 @@ class _SebhaTabState extends State<SebhaTab> {
   int index = 0;
   List<String> sebhaAzkar = ["سبحان الله " , " الحمدلله " , " الله اكبر " ];
   double turns = 0;
+  late ThemeProvider themeProvider;
   @override
   Widget build(BuildContext context) {
+    themeProvider = Provider.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -25,7 +29,7 @@ class _SebhaTabState extends State<SebhaTab> {
         SizedBox(height: 43,),
         Expanded(child: Column(
           children: [
-            Text(AppLocalizations.of(context)!.sebhaCounter , style: AppTheme.SebhaCounter,),
+            Text(AppLocalizations.of(context)!.sebhaCounter , style: themeProvider.SebhaCounter),
             SizedBox(height: 26,),
             Container(
               padding: EdgeInsets.all(15),
@@ -33,7 +37,7 @@ class _SebhaTabState extends State<SebhaTab> {
                 color: AppColors.Nescafe,
                 borderRadius: BorderRadius.circular(25)
               ),
-              child: Text("${sebhaCounter}" , style: AppTheme.SebhaCounter,),
+              child: Text("${sebhaCounter}" , style: themeProvider.SebhaCounter,),
             ),
             SizedBox(height: 22,),
             InkWell(
@@ -56,7 +60,7 @@ class _SebhaTabState extends State<SebhaTab> {
                   color: AppColors.Nescafe,
                   borderRadius: BorderRadius.circular(25)
                 ),
-                child: Text(sebhaAzkar[index], style: AppTheme.SebhaCounter.copyWith(color: Colors.white),),
+                child: Text(sebhaAzkar[index], style: themeProvider.SebhaCounter.copyWith(color: Colors.white),),
               ),
             ),
           ],

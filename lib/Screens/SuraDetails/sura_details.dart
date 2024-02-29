@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:islami_app/model/sura_details_args.dart';
 import 'package:islami_app/util/app_color.dart';
 import 'package:islami_app/util/app_theme.dart';
+import 'package:islami_app/util/theme_provider.dart';
 import 'package:islami_app/widgets/app_scaffold.dart';
+import 'package:provider/provider.dart';
 
 class SuraDetails extends StatefulWidget {
   static String routename = "SuraName";
@@ -16,9 +18,10 @@ class SuraDetails extends StatefulWidget {
 
 class _SuraDetailsState extends State<SuraDetails> {
   String fileContent = "";
-
+  late ThemeProvider themeProvider;
   @override
   Widget build(BuildContext context) {
+    themeProvider = Provider.of(context);
     SuraDetailsArgs args = ModalRoute.of(context)!.settings.arguments as SuraDetailsArgs;
     if(fileContent.isEmpty){
       readSuraFile(args.fileName);
@@ -28,7 +31,7 @@ class _SuraDetailsState extends State<SuraDetails> {
         body: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: AppColors.White
+            color: themeProvider.ContentBackground
           ),
           padding: EdgeInsets.all(20),
           margin: EdgeInsets.symmetric(horizontal: 29 ,vertical: MediaQuery.of(context).size.height * 0.07),
@@ -36,7 +39,7 @@ class _SuraDetailsState extends State<SuraDetails> {
             child: Container(
               child: Text(
                 fileContent,
-                style: AppTheme.MediumTitleTextStyle,
+                style: themeProvider.ContentTextStyle,
                 textDirection: TextDirection.rtl,
                 textAlign: TextAlign.center,
               ),

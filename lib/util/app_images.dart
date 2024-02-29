@@ -1,6 +1,8 @@
 abstract class AppImages{
-  static const String SplashLogo = "Assets/images/Splash_Logo.png";
-  static const String MainBackground = "Assets/images/default_bg.png";
+  static const String lightSplashLogo = "Assets/images/lightSplash.png";
+  static const String darkSplashLogo = "Assets/images/darkSplash.png";
+  static const String lightBackground = "Assets/images/default_bg.png";
+  static const String darkBackground = "Assets/images/dark_bg.png";
   static const String QuranIcon = "Assets/images/icon_quran.png";
   static const String AhadethIcon = "Assets/images/icon_hadeth.png";
   static const String RadioIcon = "Assets/images/icon_radio.png";

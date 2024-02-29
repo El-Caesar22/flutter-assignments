@@ -2,12 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/Screens/AhadethDetails/ahadethDetails.dart';
 import 'package:islami_app/model/ahadeth_details_args.dart';
+import 'package:islami_app/util/theme_provider.dart';
+import 'package:provider/provider.dart';
 import '../../util/app_color.dart';
 import '../../util/app_images.dart';
 import '../../util/app_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class AhadethTab extends StatelessWidget {
-  const AhadethTab({super.key});
+  late ThemeProvider themeProvider;
+   AhadethTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +27,7 @@ class AhadethTab extends StatelessWidget {
   }
 
   Widget buildScreenContent(BuildContext context) {
+    themeProvider = Provider.of(context);
     return Column(
       children: [
         Divider(
@@ -35,7 +39,7 @@ class AhadethTab extends StatelessWidget {
             Expanded(
                 child: Text(AppLocalizations.of(context)!.hadethName,
                     textAlign: TextAlign.center,
-                    style: AppTheme.MediumTitleTextStyle)),
+                    style: themeProvider.MediumTitleTextStyle)),
           ],
         ),
         Divider(
@@ -66,7 +70,7 @@ class AhadethTab extends StatelessWidget {
                     child: Text(
                       hadethName,
                       textAlign: TextAlign.center,
-                      style: AppTheme.RegularTitleTextStyle,
+                      style: themeProvider.RegularTitleTextStyle,
                     ))
               ],
             ),
@@ -76,3 +80,4 @@ class AhadethTab extends StatelessWidget {
   }
 
 }
+

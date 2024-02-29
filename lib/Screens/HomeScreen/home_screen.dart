@@ -5,9 +5,12 @@ import 'package:islami_app/Tabs/Sebha/sebha_tab.dart';
 import 'package:islami_app/Tabs/Settings/settingsTab.dart';
 import 'package:islami_app/util/app_color.dart';
 import 'package:islami_app/util/app_images.dart';
+import 'package:islami_app/util/app_localization.dart';
 import 'package:islami_app/util/app_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import '../../Tabs/Radio/radio_tab.dart';
+import '../../util/theme_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routname = "HomeScreen";
@@ -19,12 +22,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentTabIndex = 0;
   Widget Body = QuranTab();
-
+  late ThemeProvider themeProvider;
   @override
   Widget build(BuildContext context) {
+    themeProvider = Provider.of(context);
     return Container(
       decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(AppImages.MainBackground))),
+          image: DecorationImage(image: AssetImage(themeProvider.mainBackground))),
       child: Scaffold(
         backgroundColor: AppColors.Transparent,
         appBar: buildAppBar(),
@@ -37,31 +41,30 @@ class _HomeScreenState extends State<HomeScreen> {
   AppBar buildAppBar() => AppBar(
         elevation: 0,
         backgroundColor: AppColors.Transparent,
-        title: Text(AppLocalizations.of(context)!.islame, style: AppTheme.AppBarTextStyle),
+        title: Text(AppLocalizations.of(context)!.islame, style:themeProvider.AppBarTextStyle ),
         centerTitle: true,
       );
 
   Widget buildBottomNavigation() => Theme(
-        data: ThemeData(canvasColor: AppColors.PrimaryColor),
+        data: Theme.of(context).copyWith(canvasColor: Theme.of(context).primaryColor),
         child: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage(AppImages.QuranIcon), size: 35),
-                label: "Quran"),
+                label: context.setLanguage.quran),
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage(AppImages.AhadethIcon), size: 35),
-                label: "Ahadeth"),
+                label: context.setLanguage.ahadeth),
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage(AppImages.RadioIcon), size: 35),
-                label: "Radio"),
+                label: context.setLanguage.radio),
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage(AppImages.SebhaIcon), size: 35),
-                label: "Sebha"),
+                label: context.setLanguage.sebha),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings, size: 35),
-                label: "Setting")
+                label: context.setLanguage.settings)
           ],
-          selectedItemColor: AppColors.lightBlack,
           currentIndex: currentTabIndex,
           onTap: (index) {
             currentTabIndex = index;

@@ -4,16 +4,21 @@ import 'package:islami_app/model/sura_details_args.dart';
 import 'package:islami_app/Suras/suras.dart';
 import 'package:islami_app/util/app_color.dart';
 import 'package:islami_app/util/app_images.dart';
+import 'package:islami_app/util/app_localization.dart';
 import 'package:islami_app/util/app_theme.dart';
+import 'package:provider/provider.dart';
 
 import '../../Screens/SuraDetails/sura_details.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class QuranTab extends StatelessWidget {
-  const QuranTab({super.key});
+import '../../util/theme_provider.dart';
 
+class QuranTab extends StatelessWidget {
+   QuranTab({super.key});
+  late ThemeProvider themeProvider;
   @override
   Widget build(BuildContext context) {
+    themeProvider = Provider.of(context);
     return Column(
       children: [
         Expanded(
@@ -46,13 +51,13 @@ class QuranTab extends StatelessWidget {
         Row(
           children: [
             Expanded(
-                child: Text(AppLocalizations.of(context)!.versesNumber,
+                child: Text(context.setLanguage.suraName,
                     textAlign: TextAlign.center,
-                    style: AppTheme.MediumTitleTextStyle)),
+                    style: themeProvider.MediumTitleTextStyle)),
             Expanded(
                 child: Text(AppLocalizations.of(context)!.suraName,
                     textAlign: TextAlign.center,
-                    style: AppTheme.MediumTitleTextStyle)),
+                    style: themeProvider.MediumTitleTextStyle)),
           ],
         ),
         Divider(
@@ -83,13 +88,13 @@ class QuranTab extends StatelessWidget {
                           child: Text(
                         "${Suras.versesNumber[index]}",
                         textAlign: TextAlign.center,
-                        style: AppTheme.RegularTitleTextStyle,
+                        style: themeProvider.RegularTitleTextStyle,
                       )),
                       Expanded(
                           child: Text(
                         Suras.suraNames[index],
                         textAlign: TextAlign.center,
-                        style: AppTheme.RegularTitleTextStyle,
+                        style: themeProvider.RegularTitleTextStyle,
                       ))
                     ],
                   ),
