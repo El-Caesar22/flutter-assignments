@@ -10,7 +10,12 @@ import 'Screens/HomeScreen/home_screen.dart';
 import 'Screens/SuraDetails/sura_details.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-void main(){
+void main()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  ThemeProvider themeProvider = ThemeProvider();
+  LanguageProvider languageProvider = LanguageProvider();
+  await themeProvider.setTheme();
+  await languageProvider.setLanguage();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => LanguageProvider()),

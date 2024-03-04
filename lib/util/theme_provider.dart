@@ -2,13 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:islami_app/util/app_color.dart';
 import 'package:islami_app/util/app_images.dart';
 import 'package:islami_app/util/app_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider extends ChangeNotifier{
     ThemeMode currentTheme = ThemeMode.light;
+    SharedPreferences? sharedPreferences;
+
 
     toogleTheme(bool darkThemeSwitchValue){
-      currentTheme = darkThemeSwitchValue ? ThemeMode.dark : ThemeMode.light;
+      currentTheme = darkThemeSwitchValue ? ThemeMode.dark: ThemeMode.light;
+      saveTheme(true);
       notifyListeners();
+    }
+
+    Future<void> setTheme() async{
+      sharedPreferences = await SharedPreferences.getInstance();
+      if(getTheme() ?? false){
+        currentTheme = ThemeMode.dark;
+      }
+      else{
+        currentTheme = ThemeMode.light;
+      }
     }
 
     String get mainBackground =>
@@ -40,4 +54,12 @@ class ThemeProvider extends ChangeNotifier{
 
     get SplashBackground =>
         currentTheme == ThemeMode.light ? AppColors.offWhite: AppColors.darkBlue;
+
+    Future<void> saveTheme(bool isDark) async{
+      await sharedPreferences!.setBool("isDark", isDark);
+    }
+
+    bool? getTheme(){
+      return sharedPreferences!.getBool("isDark");
+    }
 }
